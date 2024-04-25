@@ -22,13 +22,11 @@ export class AppService {
         return resultado;
       }
 
-      let shortOf = null;
-
       const generateShort = async () => {
-        shortOf = gerarRandom();
+        short = gerarRandom();
 
         const existingShortener = await this.shortenerRepository.findOne({
-          where: { short: shortOf },
+          where: { short },
         });
 
         if (existingShortener) {
@@ -40,7 +38,9 @@ export class AppService {
         await generateShort();
       }
 
-      if (!short && !shortOf) {
+      console.log(`${short}`);
+
+      if (!short) {
         throw new ForbiddenException();
       }
 
@@ -56,7 +56,7 @@ export class AppService {
 
       const shortener = this.shortenerRepository.create({
         url,
-        short: short ? short : shortOf,
+        short
       });
 
       return await this.shortenerRepository.save(shortener);

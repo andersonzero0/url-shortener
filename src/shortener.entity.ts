@@ -1,15 +1,15 @@
 import { OmitType } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString, IsUrl, Matches, Max, MaxLength } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString, IsUrl, Matches, MaxLength } from "class-validator";
 import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
+  ObjectIdColumn,
 } from "typeorm";
 
 @Entity()
 export class Shortener {
-  @PrimaryGeneratedColumn("uuid")
+  @ObjectIdColumn()
   id: string;
 
   @IsUrl()
@@ -35,4 +35,5 @@ export class Shortener {
   createAt: Date;
 }
 
-export class ShortenerDto extends OmitType(Shortener, ['id', 'createAt']) {}
+export class ShortenerDto extends OmitType(Shortener, ['id', 'createAt']) { }
+  

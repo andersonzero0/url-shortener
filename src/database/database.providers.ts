@@ -1,15 +1,14 @@
-import { DataSource } from 'typeorm';
+import { DataSource } from "typeorm";
 
 export const databaseProviders = [
   {
-    provide: 'DATA_SOURCE',
+    provide: "DATA_SOURCE",
     useFactory: async () => {
       const dataSource = new DataSource({
-        type: 'postgres',
+        type: "mongodb",
         url: process.env.DATABASE_URI,
-        entities: [
-            __dirname + '/../**/*.entity{.ts,.js}',
-        ],
+        logging: true,
+        entities: [__dirname + "/../**/*.entity{.ts,.js}"],
         synchronize: true,
       });
 

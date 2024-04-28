@@ -9,6 +9,8 @@ dist/*
 !/dist/v8
 !/dist/v9
 
+.env
+
 /tmp
 /out-tsc
 
